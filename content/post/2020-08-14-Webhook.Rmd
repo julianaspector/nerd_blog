@@ -30,7 +30,7 @@ I needed to ask an account administrator to look up my app's owner login ID. It 
 
 Then navigate to the folder associated with webhook and share this folder with the app owner login ID:
 
-![Associate app owner login ID with webhook folder](/img/figure-html/share_folder.png)
+![Associate app owner login ID with webhook folder](/img/share_folder.png)
 
 # Set up Google Sheets to listen to webhook notifications
 Following the helpful guide in the [Runscope Blog](https://blog.runscope.com/posts/tutorial-capturing-webhooks-with-google-sheets), I was able to use a [Google Sheet](https://www.google.com/sheets/about/) as a web app to listen to webhook notifications. Once I set up the app and obtained the Google Sheet URL, I was ready to create the webhook.
