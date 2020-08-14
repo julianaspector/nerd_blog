@@ -16,7 +16,7 @@ knitr::opts_chunk$set(collapse = TRUE)
 Webhooks are user-defined HTTP callbacks that are triggered by some event, such as pushing code to a repository or a comment being posted to a blog. When that event occurs, the source site makes an HTTP request to the URL configured for the webhook. In my case, I wanted to enable a callback when a file was uploaded to a Box folder owned by my organization. 
 
 # Initial webhook app configuration in Box Developer
-1) I followed the [Setup with JSON Web Tokens (JWT) guide](https://developer.box.com/guides/applications/custom-apps/jwt-setup/) from Box to set up app. 
+1) I followed the [Setup with JSON Web Tokens (JWT) guide](https://developer.box.com/guides/applications/custom-apps/jwt-setup/) from Box to create app. 
 
 2) In order for app to access folders set up by my organization and to act as a webhook, I needed to set some additional configurations:
 
@@ -33,12 +33,12 @@ Then navigate to the folder associated with webhook and share this folder with t
 ![Associate app owner login ID with webhook folder](/img/share_folder.jpg)
 
 # Set up Google Sheets to listen to webhook notifications
-Following the helpful guide in the [Runscope Blog](https://blog.runscope.com/posts/tutorial-capturing-webhooks-with-google-sheets), I was able to use a [Google Sheet](https://www.google.com/sheets/about/) as a web app to listen to webhook notifications. Once I set up the app and obtained the Google Sheet URL, I was ready to create the webhook.
+Following this helpful guide in the [Runscope Blog](https://blog.runscope.com/posts/tutorial-capturing-webhooks-with-google-sheets), I was able to use a [Google Sheet](https://www.google.com/sheets/about/) as a web app to listen to webhook notifications. Once I set up the app and obtained the Google Sheet app URL, I was ready to create the webhook.
 
 # Create webhook for folder
-I used this [Box guide](https://developer.box.com/guides/webhooks/manage/for-folder/#webhook-triggers) as a starting point to set up the webhook for folder using Python. 
+I used this [Box guide](https://developer.box.com/guides/webhooks/manage/for-folder/#webhook-triggers) as a starting point to set up the webhook using Python. 
 
-You will need the following information to set up webhook:
+I needed the following information to set up webhook:
 
 - Box folder ID: Navigate to folder in Box. The folder ID will be string of numbers at end of URL: (i.e. https://cadwr.app.box.com/folder/123456789101, folder_id = 123456789101)
 - Google Sheets app URL (i.e. https://script.google.com/macros/s/UNIQUE_KEY/exec)
@@ -56,7 +56,7 @@ from boxsdk import Client
 
 client = Client(auth)
 
-# set up webhook on root folder and will work with all subfolders
+# set up webhook on root folder and will work for all subfolders
 rootfolder = client.folder(folder_id='123456789101')
 
 #Set up webhook listener for Google Sheets app
@@ -65,11 +65,11 @@ print('Webhook ID is {0} and the address is {1}'.format(webhook.id, webhook.addr
 ````
 
 # Receiving a webhook notification in Google Sheets and parsing JSON using R
-Now that webhook has been set up, it is time to see what the notification looks like in Google Sheets. After uploading a blank PDF to any subfolder of my root folder (folder set up for webhook), this is the notification:
+Now that webhook has been set up, it was time to see what the notification looked like in Google Sheets. After uploading blank PDFs to two subfolders of my root folder (set up for webhook), this was the notification:
 
 ![Webhook notification in Google Sheets](/img/webhook_response.jpg)
 
-In order to parse the JSON text in notification, I used R. For my project, I needed the file name and URL, but the script could be adapted for information of interest from JSON notification:
+In order to parse the JSON text in notification, I used R. For my project, I needed the file name and URL, but the script could be adapted for any information of interest from JSON notification:
 
 ````{r eval=FALSE}
 library(data.table) # rbindlist
@@ -100,7 +100,7 @@ id_name <- lapply(source, `[`, c('id', 'name'))
 # bind rows into one dataframe for multiple notifications
 data <- rbindlist(id_name, use.names = TRUE, fill = TRUE)
 
-# paste id to end of full URL
+# paste id to end for full URL
 data$id <- paste0("https://cadwr.app.box.com/file/", data$id)
 
 ````

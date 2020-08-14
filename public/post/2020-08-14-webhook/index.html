@@ -59,7 +59,7 @@
   "headline": "Configuring and listening to webhook using Box Developer and Google Sheets",
   "description" : "What is a webhook?\rWebhooks are user-defined HTTP callbacks that are triggered by some event, such as pushing code to a repository or a comment being posted to a blog. When that event occurs, the source site makes an HTTP request to the URL configured for the webhook. In my case, I wanted to enable a callback when a file was uploaded to a Box folder owned by my organization.",
   "inLanguage" : "en",
-  "wordCount":  598 ,
+  "wordCount":  594 ,
   "datePublished" : "2020-08-14T00:00:00",
   "dateModified" : "2020-08-14T00:00:00",
   "image" : "\/img\/cat.jpg",
@@ -240,7 +240,7 @@
     &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;3&nbsp;minutes
   
   
-    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;598&nbsp;words
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;594&nbsp;words
   
   
     
@@ -275,7 +275,7 @@
 <div id="initial-webhook-app-configuration-in-box-developer" class="section level1">
 <h1>Initial webhook app configuration in Box Developer</h1>
 <ol style="list-style-type: decimal">
-<li><p>I followed the <a href="https://developer.box.com/guides/applications/custom-apps/jwt-setup/">Setup with JSON Web Tokens (JWT) guide</a> from Box to set up app.</p></li>
+<li><p>I followed the <a href="https://developer.box.com/guides/applications/custom-apps/jwt-setup/">Setup with JSON Web Tokens (JWT) guide</a> from Box to create app.</p></li>
 <li><p>In order for app to access folders set up by my organization and to act as a webhook, I needed to set some additional configurations:</p></li>
 </ol>
 <div class="figure">
@@ -297,12 +297,12 @@
 </div>
 <div id="set-up-google-sheets-to-listen-to-webhook-notifications" class="section level1">
 <h1>Set up Google Sheets to listen to webhook notifications</h1>
-<p>Following the helpful guide in the <a href="https://blog.runscope.com/posts/tutorial-capturing-webhooks-with-google-sheets">Runscope Blog</a>, I was able to use a <a href="https://www.google.com/sheets/about/">Google Sheet</a> as a web app to listen to webhook notifications. Once I set up the app and obtained the Google Sheet URL, I was ready to create the webhook.</p>
+<p>Following this helpful guide in the <a href="https://blog.runscope.com/posts/tutorial-capturing-webhooks-with-google-sheets">Runscope Blog</a>, I was able to use a <a href="https://www.google.com/sheets/about/">Google Sheet</a> as a web app to listen to webhook notifications. Once I set up the app and obtained the Google Sheet app URL, I was ready to create the webhook.</p>
 </div>
 <div id="create-webhook-for-folder" class="section level1">
 <h1>Create webhook for folder</h1>
-<p>I used this <a href="https://developer.box.com/guides/webhooks/manage/for-folder/#webhook-triggers">Box guide</a> as a starting point to set up the webhook for folder using Python.</p>
-<p>You will need the following information to set up webhook:</p>
+<p>I used this <a href="https://developer.box.com/guides/webhooks/manage/for-folder/#webhook-triggers">Box guide</a> as a starting point to set up the webhook using Python.</p>
+<p>I needed the following information to set up webhook:</p>
 <ul>
 <li>Box folder ID: Navigate to folder in Box. The folder ID will be string of numbers at end of URL: (i.e. <a href="https://cadwr.app.box.com/folder/123456789101" class="uri">https://cadwr.app.box.com/folder/123456789101</a>, folder_id = 123456789101)</li>
 <li>Google Sheets app URL (i.e. <a href="https://script.google.com/macros/s/UNIQUE_KEY/exec" class="uri">https://script.google.com/macros/s/UNIQUE_KEY/exec</a>)</li>
@@ -318,7 +318,7 @@ from boxsdk import Client
 
 client = Client(auth)
 
-# set up webhook on root folder and will work with all subfolders
+# set up webhook on root folder and will work for all subfolders
 rootfolder = client.folder(folder_id=&#39;123456789101&#39;)
 
 #Set up webhook listener for Google Sheets app
@@ -327,12 +327,12 @@ print(&#39;Webhook ID is {0} and the address is {1}&#39;.format(webhook.id, webh
 </div>
 <div id="receiving-a-webhook-notification-in-google-sheets-and-parsing-json-using-r" class="section level1">
 <h1>Receiving a webhook notification in Google Sheets and parsing JSON using R</h1>
-<p>Now that webhook has been set up, it is time to see what the notification looks like in Google Sheets. After uploading a blank PDF to any subfolder of my root folder (folder set up for webhook), this is the notification:</p>
+<p>Now that webhook has been set up, it was time to see what the notification looked like in Google Sheets. After uploading blank PDFs to two subfolders of my root folder (set up for webhook), this was the notification:</p>
 <div class="figure">
 <img src="/img/webhook_response.jpg" alt="" />
 <p class="caption">Webhook notification in Google Sheets</p>
 </div>
-<p>In order to parse the JSON text in notification, I used R. For my project, I needed the file name and URL, but the script could be adapted for information of interest from JSON notification:</p>
+<p>In order to parse the JSON text in notification, I used R. For my project, I needed the file name and URL, but the script could be adapted for any information of interest from JSON notification:</p>
 <pre class="r"><code>library(data.table) # rbindlist
 library(tidyverse)
 library(gsheet)
@@ -361,7 +361,7 @@ id_name &lt;- lapply(source, `[`, c(&#39;id&#39;, &#39;name&#39;))
 # bind rows into one dataframe for multiple notifications
 data &lt;- rbindlist(id_name, use.names = TRUE, fill = TRUE)
 
-# paste id to end of full URL
+# paste id to end for full URL
 data$id &lt;- paste0(&quot;https://cadwr.app.box.com/file/&quot;, data$id)
 </code></pre>
 </div>
