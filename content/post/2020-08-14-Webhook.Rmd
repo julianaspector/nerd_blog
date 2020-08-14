@@ -20,7 +20,7 @@ Webhooks are user-defined HTTP callbacks that are triggered by some event, such 
 
 2) In order for app to access folders set up by my organization and to act as a webhook, I needed to set some additional configurations:
 
-![Configuration settings for access level and application scopes](/img/configuration_settings.png)
+![Configuration settings for access level and application scopes](/img/configuration_settings.jpg)
 
 3) I saved the downloaded JSON configuration file with keypairs in a known location.
 
