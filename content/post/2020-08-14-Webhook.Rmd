@@ -104,3 +104,12 @@ data <- rbindlist(id_name, use.names = TRUE, fill = TRUE)
 data$id <- paste0("https://cadwr.app.box.com/file/", data$id)
 
 ````
+
+The resulting parsed data looks like this:
+````{r echo=FALSE}
+table <- read.xlsx("xlsx/table.xlsx", sheet=1)
+myft <- flextable(template)
+myft <-theme_box(myft)
+myft <- autofit(myft)
+myft
+````
