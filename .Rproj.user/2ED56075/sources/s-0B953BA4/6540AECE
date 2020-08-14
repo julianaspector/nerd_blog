@@ -3,22 +3,22 @@
     "path": "~/GitHub/nerd_blog/config.toml",
     "project_path": "config.toml",
     "type": "toml",
-    "hash": "1137570511",
+    "hash": "1193165146",
     "contents": "",
     "dirty": false,
     "created": 1597431216568.0,
     "source_on_save": false,
     "relative_order": 2,
     "properties": {
-        "cursorPosition": "74,3",
-        "scrollLine": "48"
+        "cursorPosition": "109,0",
+        "scrollLine": "64"
     },
     "folds": "",
-    "lastKnownWriteTime": 1597432056,
+    "lastKnownWriteTime": 1597432157,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1597432056587,
+    "last_content_update": 1597432157370,
     "read_only": false,
     "read_only_alternatives": []
 }
