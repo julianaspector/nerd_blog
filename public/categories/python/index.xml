@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Juliana&#39;s Water Data Nerd Blog</title>
-    <link>/</link>
-    <description>Recent content on Juliana&#39;s Water Data Nerd Blog</description>
+    <title>Python on Juliana&#39;s Water Data Nerd Blog</title>
+    <link>/categories/python/</link>
+    <description>Recent content in Python on Juliana&#39;s Water Data Nerd Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>juliana.spector@water.ca.gov (Juliana Spector)</managingEditor>
     <webMaster>juliana.spector@water.ca.gov (Juliana Spector)</webMaster>
     <lastBuildDate>Fri, 14 Aug 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/categories/python/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -19,15 +19,6 @@
       <author>juliana.spector@water.ca.gov (Juliana Spector)</author>
       <guid>/post/2020-08-14-webhook/</guid>
       <description>What is a webhook?Webhooks are user-defined HTTP callbacks that are triggered by some event, such as pushing code to a repository or a comment being posted to a blog. When that event occurs, the source site makes an HTTP request to the URL configured for the webhook. In my case, I wanted to enable a callback when a file was uploaded to a Box folder owned by my organization.</description>
-    </item>
-    
-    <item>
-      <title>About me</title>
-      <link>/page/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <author>juliana.spector@water.ca.gov (Juliana Spector)</author>
-      <guid>/page/about/</guid>
-      <description>I am an Engineering Geologist at the Department of Water Resources based in Sacramento, California. Outside of work, I enjoy singing in choir, rock climbing, and backpacking in the Sierras.</description>
     </item>
     
   </channel>

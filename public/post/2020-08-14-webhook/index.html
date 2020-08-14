@@ -7,8 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>About me - Juliana&#39;s Water Data Nerd Blog</title>
-  <meta name="description" content="I am an Engineering Geologist at the Department of Water Resources based in Sacramento, California. Outside of work, I enjoy singing in choir, rock climbing, and backpacking in the Sierras.">
+  <title>Configuring and listening to webhook using Box Developer and Google Sheets - Juliana&#39;s Water Data Nerd Blog</title>
+  <meta name="description" content="What is a webhook?Webhooks are user-defined HTTP callbacks that are triggered by some event, such as pushing code to a repository or a comment being posted to a blog. When that event occurs, the source site makes an HTTP request to the URL configured for the webhook. In my case, I wanted to enable a callback when a file was uploaded to a Box folder owned by my organization.">
   <meta name="author" content="Juliana Spector"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -44,8 +44,8 @@
         "@type": "ListItem",
         "position": 3,
         "item": {
-          "@id": "\/page\/about\/",
-          "name": "About me"
+          "@id": "\/post\/2020-08-14-webhook\/",
+          "name": "Configuring and listening to webhook using box developer and google sheets"
         }
     }]
 }
@@ -56,15 +56,15 @@
   "author": {
     "name" : "Juliana Spector"
   },
-  "headline": "About me",
-  "description" : "I am an Engineering Geologist at the Department of Water Resources based in Sacramento, California. Outside of work, I enjoy singing in choir, rock climbing, and backpacking in the Sierras.",
+  "headline": "Configuring and listening to webhook using Box Developer and Google Sheets",
+  "description" : "What is a webhook?\rWebhooks are user-defined HTTP callbacks that are triggered by some event, such as pushing code to a repository or a comment being posted to a blog. When that event occurs, the source site makes an HTTP request to the URL configured for the webhook. In my case, I wanted to enable a callback when a file was uploaded to a Box folder owned by my organization.",
   "inLanguage" : "en",
-  "wordCount":  30 ,
-  "datePublished" : "0001-01-01T00:00:00",
-  "dateModified" : "0001-01-01T00:00:00",
+  "wordCount":  598 ,
+  "datePublished" : "2020-08-14T00:00:00",
+  "dateModified" : "2020-08-14T00:00:00",
   "image" : "\/img\/cat.jpg",
-  "keywords" : [ "" ],
-  "mainEntityOfPage" : "\/page\/about\/",
+  "keywords" : [ "Box Developer, Google Sheets" ],
+  "mainEntityOfPage" : "\/post\/2020-08-14-webhook\/",
   "publisher" : {
     "@type": "Organization",
     "name" : "\/",
@@ -78,15 +78,15 @@
 }
 </script>
 
-<meta property="og:title" content="About me" />
-<meta property="og:description" content="I am an Engineering Geologist at the Department of Water Resources based in Sacramento, California. Outside of work, I enjoy singing in choir, rock climbing, and backpacking in the Sierras.">
+<meta property="og:title" content="Configuring and listening to webhook using Box Developer and Google Sheets" />
+<meta property="og:description" content="What is a webhook?Webhooks are user-defined HTTP callbacks that are triggered by some event, such as pushing code to a repository or a comment being posted to a blog. When that event occurs, the source site makes an HTTP request to the URL configured for the webhook. In my case, I wanted to enable a callback when a file was uploaded to a Box folder owned by my organization.">
 <meta property="og:image" content="/img/cat.jpg" />
-<meta property="og:url" content="/page/about/" />
+<meta property="og:url" content="/post/2020-08-14-webhook/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Juliana&#39;s Water Data Nerd Blog" />
 
-  <meta name="twitter:title" content="About me" />
-  <meta name="twitter:description" content="I am an Engineering Geologist at the Department of Water Resources based in Sacramento, California. Outside of work, I enjoy singing in choir, rock climbing, and backpacking in the Sierras.">
+  <meta name="twitter:title" content="Configuring and listening to webhook using Box Developer and Google …" />
+  <meta name="twitter:description" content="What is a webhook?Webhooks are user-defined HTTP callbacks that are triggered by some event, such as pushing code to a repository or a comment being posted to a blog. When that event occurs, the …">
   <meta name="twitter:image" content="/img/cat.jpg" />
   <meta name="twitter:card" content="summary" />
   <link href='/img/cat_favicon.ico' rel='icon' type='image/x-icon'/>
@@ -224,14 +224,33 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <div class="page-heading">
+            <div class="post-heading">
               
-                <h1>About me</h1>
-              
-              
-                <hr class="small">
+                <h1>Configuring and listening to webhook using Box Developer and Google Sheets</h1>
               
               
+              
+              
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on August 14, 2020
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;3&nbsp;minutes
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;598&nbsp;words
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;Juliana Spector
+    
+  
+  
+</span>
+
+
               
             </div>
           </div>
@@ -246,10 +265,116 @@
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        <p>I am an Engineering Geologist at the Department of Water Resources based in Sacramento, California. Outside of work, I enjoy singing in choir, rock climbing, and backpacking in the Sierras.</p>
-<p><img src="/img/collage.png" alt="Random pics from choir concerts and outdoor adventures"></p>
+        
 
 
+<div id="what-is-a-webhook" class="section level1">
+<h1>What is a webhook?</h1>
+<p>Webhooks are user-defined HTTP callbacks that are triggered by some event, such as pushing code to a repository or a comment being posted to a blog. When that event occurs, the source site makes an HTTP request to the URL configured for the webhook. In my case, I wanted to enable a callback when a file was uploaded to a Box folder owned by my organization.</p>
+</div>
+<div id="initial-webhook-app-configuration-in-box-developer" class="section level1">
+<h1>Initial webhook app configuration in Box Developer</h1>
+<ol style="list-style-type: decimal">
+<li><p>I followed the <a href="https://developer.box.com/guides/applications/custom-apps/jwt-setup/">Setup with JSON Web Tokens (JWT) guide</a> from Box to set up app.</p></li>
+<li><p>In order for app to access folders set up by my organization and to act as a webhook, I needed to set some additional configurations:</p></li>
+</ol>
+<div class="figure">
+<img src="/post/2020-08-12-Webhook_files/figure-html/configuration_settings.png" alt="" />
+<p class="caption">Configuration settings for access level and application scopes</p>
+</div>
+<ol start="3" style="list-style-type: decimal">
+<li>I saved the downloaded JSON configuration file with keypairs in a known location.</li>
+</ol>
+</div>
+<div id="associate-app-owner-login-id-with-webhook-folder" class="section level1">
+<h1>Associate app owner login ID with webhook folder</h1>
+<p>I needed to ask an account administrator to look up my app’s owner login ID. It looks like an email address: <a href="mailto:AutomationUser_blah@boxdevedition.com" class="email">AutomationUser_blah@boxdevedition.com</a></p>
+<p>Then navigate to the folder associated with webhook and share this folder with the app owner login ID:</p>
+<div class="figure">
+<img src="/post/2020-08-12-Webhook_files/figure-html/share_folder.png" alt="" />
+<p class="caption">Associate app owner login ID with webhook folder</p>
+</div>
+</div>
+<div id="set-up-google-sheets-to-listen-to-webhook-notifications" class="section level1">
+<h1>Set up Google Sheets to listen to webhook notifications</h1>
+<p>Following the helpful guide in the <a href="https://blog.runscope.com/posts/tutorial-capturing-webhooks-with-google-sheets">Runscope Blog</a>, I was able to use a <a href="https://www.google.com/sheets/about/">Google Sheet</a> as a web app to listen to webhook notifications. Once I set up the app and obtained the Google Sheet URL, I was ready to create the webhook.</p>
+</div>
+<div id="create-webhook-for-folder" class="section level1">
+<h1>Create webhook for folder</h1>
+<p>I used this <a href="https://developer.box.com/guides/webhooks/manage/for-folder/#webhook-triggers">Box guide</a> as a starting point to set up the webhook for folder using Python.</p>
+<p>You will need the following information to set up webhook:</p>
+<ul>
+<li>Box folder ID: Navigate to folder in Box. The folder ID will be string of numbers at end of URL: (i.e. <a href="https://cadwr.app.box.com/folder/123456789101" class="uri">https://cadwr.app.box.com/folder/123456789101</a>, folder_id = 123456789101)</li>
+<li>Google Sheets app URL (i.e. <a href="https://script.google.com/macros/s/UNIQUE_KEY/exec" class="uri">https://script.google.com/macros/s/UNIQUE_KEY/exec</a>)</li>
+<li>JSON configuration file name (i.e. blah_blah_config.json)</li>
+</ul>
+<p>Here is the Python code for setting up a webhook to be notified when a file is uploaded to a folder:</p>
+<pre class="python"><code>from boxsdk import JWTAuth
+
+#Path to JWT config
+auth = JWTAuth.from_settings_file(&#39;blah_blah_config.json&#39;)
+
+from boxsdk import Client
+
+client = Client(auth)
+
+# set up webhook on root folder and will work with all subfolders
+rootfolder = client.folder(folder_id=&#39;123456789101&#39;)
+
+#Set up webhook listener for Google Sheets app
+webhook = client.create_webhook(rootfolder, [&#39;FILE.UPLOADED&#39;], &#39;https://script.google.com/macros/s/UNIQUE_KEY/exec&#39;)
+print(&#39;Webhook ID is {0} and the address is {1}&#39;.format(webhook.id, webhook.address))</code></pre>
+</div>
+<div id="receiving-a-webhook-notification-in-google-sheets-and-parsing-json-using-r" class="section level1">
+<h1>Receiving a webhook notification in Google Sheets and parsing JSON using R</h1>
+<p>Now that webhook has been set up, it is time to see what the notification looks like in Google Sheets. After uploading a blank PDF to any subfolder of my root folder (folder set up for webhook), this is the notification:</p>
+<div class="figure">
+<img src="/post/2020-08-12-Webhook_files/figure-html/webhook_response.png" alt="" />
+<p class="caption">Webhook notification in Google Sheets</p>
+</div>
+<p>In order to parse the JSON text in notification, I used R. For my project, I needed the file name and URL, but the script could be adapted for information of interest from JSON notification:</p>
+<pre class="r"><code>library(data.table) # rbindlist
+library(tidyverse)
+library(gsheet)
+library(jsonlite)
+
+url &lt;-
+  &#39;https://docs.google.com/spreadsheets/d/UNIQUE_ID/edit?usp=sharing&#39;
+
+file &lt;-
+  read.csv(text = gsheet2text(url, format = &#39;csv&#39;),
+           stringsAsFactors = FALSE)
+
+# rename columns from Google Sheet to meaningful headers
+file &lt;-
+  file %&gt;% select(X, X.5) %&gt;% rename(Date = X, Information = X.5)
+
+# convert JSON information to R object
+json_data &lt;- lapply(file$Information, fromJSON)
+
+# extract source because information you need is in there
+source &lt;- lapply(json_data, `[[`, c(&#39;source&#39;))
+
+# extract URL and file name
+id_name &lt;- lapply(source, `[`, c(&#39;id&#39;, &#39;name&#39;))
+
+# bind rows into one dataframe for multiple notifications
+data &lt;- rbindlist(id_name, use.names = TRUE, fill = TRUE)
+
+# paste id to end of full URL
+data$id &lt;- paste0(&quot;https://cadwr.app.box.com/file/&quot;, data$id)
+</code></pre>
+</div>
+
+
+        
+          <div class="blog-tags">
+            
+              <a href="//tags/box-developer/">Box Developer</a>&nbsp;
+            
+              <a href="//tags/google-sheets/">Google Sheets</a>&nbsp;
+            
+          </div>
         
 
         
@@ -262,42 +387,42 @@
     <ul class="share">
       
       <li>
-        <a href="//twitter.com/share?url=%2fpage%2fabout%2f&amp;text=About%20me&amp;via=" target="_blank" title="Share on Twitter">
+        <a href="//twitter.com/share?url=%2fpost%2f2020-08-14-webhook%2f&amp;text=Configuring%20and%20listening%20to%20webhook%20using%20Box%20Developer%20and%20Google%20Sheets&amp;via=" target="_blank" title="Share on Twitter">
           <i class="fab fa-twitter"></i>
         </a>
       </li>
   
       
       <li>
-        <a href="//www.facebook.com/sharer/sharer.php?u=%2fpage%2fabout%2f" target="_blank" title="Share on Facebook">
+        <a href="//www.facebook.com/sharer/sharer.php?u=%2fpost%2f2020-08-14-webhook%2f" target="_blank" title="Share on Facebook">
           <i class="fab fa-facebook"></i>
         </a>
       </li>
   
       
       <li>
-        <a href="//reddit.com/submit?url=%2fpage%2fabout%2f&amp;title=About%20me" target="_blank" title="Share on Reddit">
+        <a href="//reddit.com/submit?url=%2fpost%2f2020-08-14-webhook%2f&amp;title=Configuring%20and%20listening%20to%20webhook%20using%20Box%20Developer%20and%20Google%20Sheets" target="_blank" title="Share on Reddit">
           <i class="fab fa-reddit"></i>
         </a>
       </li>
   
       
       <li>
-        <a href="//www.linkedin.com/shareArticle?url=%2fpage%2fabout%2f&amp;title=About%20me" target="_blank" title="Share on LinkedIn">
+        <a href="//www.linkedin.com/shareArticle?url=%2fpost%2f2020-08-14-webhook%2f&amp;title=Configuring%20and%20listening%20to%20webhook%20using%20Box%20Developer%20and%20Google%20Sheets" target="_blank" title="Share on LinkedIn">
           <i class="fab fa-linkedin"></i>
         </a>
       </li>
   
       
       <li>
-        <a href="//www.stumbleupon.com/submit?url=%2fpage%2fabout%2f&amp;title=About%20me" target="_blank" title="Share on StumbleUpon">
+        <a href="//www.stumbleupon.com/submit?url=%2fpost%2f2020-08-14-webhook%2f&amp;title=Configuring%20and%20listening%20to%20webhook%20using%20Box%20Developer%20and%20Google%20Sheets" target="_blank" title="Share on StumbleUpon">
           <i class="fab fa-stumbleupon"></i>
         </a>
       </li>
   
       
       <li>
-        <a href="//www.pinterest.com/pin/create/button/?url=%2fpage%2fabout%2f&amp;description=About%20me" target="_blank" title="Share on Pinterest">
+        <a href="//www.pinterest.com/pin/create/button/?url=%2fpost%2f2020-08-14-webhook%2f&amp;description=Configuring%20and%20listening%20to%20webhook%20using%20Box%20Developer%20and%20Google%20Sheets" target="_blank" title="Share on Pinterest">
           <i class="fab fa-pinterest"></i>
         </a>
       </li>
@@ -317,8 +442,16 @@
       </article>
 
       
+        <ul class="pager blog-pager">
+          
+          
+        </ul>
+      
 
 
+      
+        
+        
       
 
     </div>
@@ -326,14 +459,6 @@
 </div>
 
       
-    <div class="page-meta">
-  
-  
-  
-</div>
-
-
-  
 <footer>
   <div class="container">
     <div class="row">
