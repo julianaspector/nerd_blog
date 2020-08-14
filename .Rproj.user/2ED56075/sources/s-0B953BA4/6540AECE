@@ -1,0 +1,24 @@
+{
+    "id": "6540AECE",
+    "path": "~/GitHub/nerd_blog/config.toml",
+    "project_path": "config.toml",
+    "type": "toml",
+    "hash": "313965850",
+    "contents": "",
+    "dirty": false,
+    "created": 1597431216568.0,
+    "source_on_save": false,
+    "relative_order": 2,
+    "properties": {
+        "cursorPosition": "0,45",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1597431239,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1597431239679,
+    "read_only": false,
+    "read_only_alternatives": []
+}
