@@ -67,7 +67,7 @@ print('Webhook ID is {0} and the address is {1}'.format(webhook.id, webhook.addr
 # Receiving a webhook notification in Google Sheets and parsing JSON using R
 Now that webhook has been set up, it is time to see what the notification looks like in Google Sheets. After uploading a blank PDF to any subfolder of my root folder (folder set up for webhook), this is the notification:
 
-![Webhook notification in Google Sheets](/img/webhook_response.png)
+![Webhook notification in Google Sheets](/img/webhook_response.jpg)
 
 In order to parse the JSON text in notification, I used R. For my project, I needed the file name and URL, but the script could be adapted for information of interest from JSON notification:
 
