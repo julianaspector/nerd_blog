@@ -1,0 +1,13 @@
+---
+title: Web scraping from web pages in batch
+author: Juliana Spector
+date: '2020-08-14'
+slug: web-scraping-from-web-pages-in-batch
+categories:
+  - R
+tags:
+  - rvest
+type: ''
+subtitle: ''
+image: ''
+---

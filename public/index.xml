@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>juliana.spector@water.ca.gov (Juliana Spector)</managingEditor>
     <webMaster>juliana.spector@water.ca.gov (Juliana Spector)</webMaster>
-    <lastBuildDate>Fri, 14 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 18 Aug 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Web scraping from web pages in batch</title>
+      <link>/post/web-scraping-from-webpages-in-batch/</link>
+      <pubDate>Tue, 18 Aug 2020 00:00:00 +0000</pubDate>
+      <author>juliana.spector@water.ca.gov (Juliana Spector)</author>
+      <guid>/post/web-scraping-from-webpages-in-batch/</guid>
+      <description>Why use web scraping?If you find that you often need to visit similar web pages and extract the same information from each page, web scraping can be a useful strategy to save time and increase efficiency. As part of my job duties, I am responsible for checking water well driller license expiration dates on Contractors State License Board website monthly. There are over 1000 active licenses that need to be tracked for the state; to check expiration dates, I need to navigate to a separate web page for each license, which can be cumbersome.</description>
+    </item>
     
     <item>
       <title>Configuring and listening to webhook using Box Developer and Google Sheets</title>

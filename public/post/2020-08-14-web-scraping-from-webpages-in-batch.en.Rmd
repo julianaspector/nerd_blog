@@ -1,0 +1,93 @@
+---
+title: Web scraping from web pages in batch
+author: Juliana Spector
+date: '2020-08-18'
+slug: web-scraping-from-webpages-in-batch
+categories:
+  - R
+tags:
+  - rvest
+type: ''
+subtitle: ''
+image: ''
+---
+
+# Why use web scraping?
+If you find that you often need to visit similar web pages and extract the same information from each page, web scraping can be a useful strategy to save time and increase efficiency. As part of my job duties, I am responsible for checking water well driller license expiration dates on [Contractors State License Board website](https://www.cslb.ca.gov/OnlineServices/CheckLicenseII/CheckLicense.aspx) monthly. There are over 1000 active licenses that need to be tracked for the state; to check expiration dates, I need to navigate to a separate web page for each license, which can be cumbersome.
+
+# Enter the rvest package!
+The rvest package makes web scraping quite easy and this nice [blog post](https://blog.rstudio.com/2014/11/24/rvest-easy-web-scraping-with-r/) from RStudio was a great starting point. However, in my case, I needed to visit multiple web pages and scrape the same data from each page. 
+
+# Read HTML off desired pages
+
+First, I obtained a list of license numbers that I wanted to check on CSLB website and read those values into R from a csv file. Then based on those license numbers, I obtained a list of URLs that I wanted to navigate to and read HTML off those pages.
+
+````{r eval=FALSE}
+library(rvest)
+library(tidyverse)
+
+#SET UP
+license_csv_view <- "PATH TO CSV FILE HERE"
+
+#read csv
+license_csv <- read.csv(license_csv_view)
+license_table <- license_csv
+
+# license detail page
+base_url <-
+  "https://www.cslb.ca.gov/OnlineServices/CheckLicenseII/LicenseDetail.aspx?LicNum="
+
+# create links and read html off pages
+license_pages <- data_frame(
+  LIC_NBR = license_table$LIC_NBR,
+  link = paste0(base_url, LIC_NBR),
+  page = map(link, read_html)
+)
+
+````
+
+# Use Selector Gadget to determine selector name
+
+Next I needed to determine selector names of HTML nodes so desired data could be extracted. As suggested in the R Studio blog post, I used the Selector Gadget add-in to Google Chrome to figure out selector names for license number (h1 span) and expiration date (#MainContent_ExpDt).
+
+![Determining the selector name for license number(h1 span)](/img/license_number.png)
+
+![Determining the selector name for expiration date (#MainContent_ExpDt)](/img/expiration_date.png)
+
+# Extract data from relevant nodes on web pages
+
+Then using rvest, I scraped license numbers and expiration dates from each web page, tidied the data, and converted the expiration date data to a date type with anytime package:
+
+````{r eval=FALSE}
+library(anytime)
+
+# extract data from relevant nodes on each page
+license_specs <- license_pages %>%
+  mutate(node_license = map(page, html_node, 'h1 span'),
+         node_exp_date = map(page, html_node, '#MainContent_ExpDt'),
+         LIC_NBR = as.character(map(node_license, html_text)),
+         NEW_LIC_EXPIR_DD = map(node_exp_date, html_text))
+
+# select relevant columns, unnest expiration dates list and convert to date
+license_specs <- license_specs %>% select(LIC_NBR, NEW_LIC_EXPIR_DD)
+license_specs <- license_specs %>% unnest(NEW_LIC_EXPIR_DD)
+license_specs$NEW_LIC_EXPIR_DD <- anydate(license_specs$NEW_LIC_EXPIR_DD)
+````
+
+Here is what the head of final scraped data looks like:
+
+````{r, include=FALSE}
+library(readxl)
+library(flextable)
+library(officer)
+
+````
+
+````{r table, echo=FALSE}
+
+table <- read_excel("xlsx/table1.xlsx", sheet=1)
+myft <- flextable(table)
+myft <-theme_box(myft)
+myft <- autofit(myft)
+myft
+````

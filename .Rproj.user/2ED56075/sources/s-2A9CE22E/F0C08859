@@ -1,0 +1,24 @@
+{
+    "id": "F0C08859",
+    "path": "~/GitHub/nerd_blog/content/post/2020-08-14-web-scraping-from-webpages-in-batch.en.Rmd",
+    "project_path": "content/post/2020-08-14-web-scraping-from-webpages-in-batch.en.Rmd",
+    "type": "r_markdown",
+    "hash": "3081973152",
+    "contents": "",
+    "dirty": false,
+    "created": 1597448365202.0,
+    "source_on_save": false,
+    "relative_order": 5,
+    "properties": {
+        "cursorPosition": "76,24",
+        "scrollLine": "56"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1597787964,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1597787964322,
+    "read_only": false,
+    "read_only_alternatives": []
+}

@@ -1,24 +1,24 @@
 {
-    "id": "AF7D42E9",
-    "path": "~/ACA_Stage_XML_Bulk_Upload/XML_Bulk_Upload_Documentation/documentation.Rmd",
+    "id": "E99A11BB",
+    "path": "C:/Users/jspector/Desktop/web_scrape_correct_expiration_date.R",
     "project_path": null,
-    "type": "r_markdown",
+    "type": "r_source",
     "hash": "0",
     "contents": "",
     "dirty": false,
-    "created": 1597444076417.0,
+    "created": 1597765226796.0,
     "source_on_save": false,
-    "relative_order": 3,
+    "relative_order": 5,
     "properties": {
-        "cursorPosition": "8,0",
+        "cursorPosition": "36,0",
         "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1593117586,
+    "lastKnownWriteTime": 1597768226,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1593117586,
+    "last_content_update": 1597768226669,
     "read_only": false,
     "read_only_alternatives": []
 }

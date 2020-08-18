@@ -4,16 +4,41 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2020-08-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/box-developer/</loc>
-    <lastmod>2020-08-14T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-18T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/categories/</loc>
+    <lastmod>2020-08-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2020-08-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/r/</loc>
+    <lastmod>2020-08-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/rvest/</loc>
+    <lastmod>2020-08-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2020-08-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/web-scraping-from-webpages-in-batch/</loc>
+    <lastmod>2020-08-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/box-developer/</loc>
     <lastmod>2020-08-14T00:00:00+00:00</lastmod>
   </url>
   
@@ -28,22 +53,7 @@
   </url>
   
   <url>
-    <loc>/post/</loc>
-    <lastmod>2020-08-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/categories/python/</loc>
-    <lastmod>2020-08-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/r/</loc>
-    <lastmod>2020-08-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
     <lastmod>2020-08-14T00:00:00+00:00</lastmod>
   </url>
   

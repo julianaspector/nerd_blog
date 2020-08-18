@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Juliana&#39;s Water Data Nerd Blog</title>
-    <link>/post/</link>
-    <description>Recent content in Posts on Juliana&#39;s Water Data Nerd Blog</description>
+    <title>rvest on Juliana&#39;s Water Data Nerd Blog</title>
+    <link>/tags/rvest/</link>
+    <description>Recent content in rvest on Juliana&#39;s Water Data Nerd Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>juliana.spector@water.ca.gov (Juliana Spector)</managingEditor>
     <webMaster>juliana.spector@water.ca.gov (Juliana Spector)</webMaster>
     <lastBuildDate>Tue, 18 Aug 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/rvest/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -19,15 +19,6 @@
       <author>juliana.spector@water.ca.gov (Juliana Spector)</author>
       <guid>/post/web-scraping-from-webpages-in-batch/</guid>
       <description>Why use web scraping?If you find that you often need to visit similar web pages and extract the same information from each page, web scraping can be a useful strategy to save time and increase efficiency. As part of my job duties, I am responsible for checking water well driller license expiration dates on Contractors State License Board website monthly. There are over 1000 active licenses that need to be tracked for the state; to check expiration dates, I need to navigate to a separate web page for each license, which can be cumbersome.</description>
-    </item>
-    
-    <item>
-      <title>Configuring and listening to webhook using Box Developer and Google Sheets</title>
-      <link>/post/2020-08-14-webhook/</link>
-      <pubDate>Fri, 14 Aug 2020 00:00:00 +0000</pubDate>
-      <author>juliana.spector@water.ca.gov (Juliana Spector)</author>
-      <guid>/post/2020-08-14-webhook/</guid>
-      <description>What is a webhook?Webhooks are user-defined HTTP callbacks that are triggered by some event, such as pushing code to a repository or a comment being posted to a blog. When that event occurs, the source site makes an HTTP request to the URL configured for the webhook. In my case, I wanted to enable a callback when a file was uploaded to a Box folder owned by my organization.</description>
     </item>
     
   </channel>
