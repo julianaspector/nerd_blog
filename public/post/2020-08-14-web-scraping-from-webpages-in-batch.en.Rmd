@@ -52,7 +52,7 @@ Next I needed to determine selector names of HTML nodes so desired data could be
 
 ![Determining the selector name for license number(h1 span)](/img/license_number.png)
 
-![Determining the selector name for expiration date (#MainContent_ExpDt)](/img/expiration_date.png)
+![Determining the selector name for expiration date (#MainContent_ExpDt)](/img/expiration_date_zoom.png)
 
 # Extract data from relevant nodes on web pages
 
