@@ -90,7 +90,7 @@ set db_connect=
 ```
 
 # Connect to Oracle database with cx_Oracle library
-Now the cx_Oracle library can be used to connect to database. Activate conda environment and open Spyder from the terminal. This is the code I used in a Spyder code editor:
+Then the cx_Oracle library could be used to connect to database. I activated conda environment and opened Spyder from the terminal. Here is the code used:
 
 ```{python, eval=FALSE}
 import cx_Oracle
