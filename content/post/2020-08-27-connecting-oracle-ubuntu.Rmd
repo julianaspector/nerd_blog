@@ -52,7 +52,7 @@ and added this line to `oracle.conf`:
 /usr/lib/oracle/<your version>/client64/lib
 ```
 
-Then update the configuration by running following command:
+Then updated the configuration by running following command:
 
 ```{bash, eval=FALSE}
 sudo ldconfig
