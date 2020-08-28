@@ -52,9 +52,11 @@ mkdir -p ./etc/conda/deactivate.d
 touch ./etc/conda/activate.d/env_vars.sh
 touch ./etc/conda/deactivate.d/env_vars.sh</code></pre>
 <p>I edited <code>.\etc\conda\activate.d\env_vars.bat</code> as follows with user name and password:</p>
-<pre class="bash"><code>export db_connect=&#39;user/pw@db&#39;</code></pre>
+<pre class="bash"><code>#!/bin/sh
+export db_connect=&#39;user/pw@db&#39;</code></pre>
 <p>Then I edited <code>.\etc\conda\deactivate.d\env_vars.bat</code> as follows:</p>
-<pre class="bash"><code>set db_connect=</code></pre>
+<pre class="bash"><code>#!/bin/sh
+set db_connect=</code></pre>
 </div>
 <div id="connect-to-oracle-database-with-cx_oracle-library" class="section level1">
 <h1>Connect to Oracle database with cx_Oracle library</h1>

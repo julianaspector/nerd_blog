@@ -80,12 +80,14 @@ touch ./etc/conda/deactivate.d/env_vars.sh
 I edited `.\etc\conda\activate.d\env_vars.bat` as follows with user name and password:
 
 ```{bash, eval=FALSE}
+#!/bin/sh
 export db_connect='user/pw@db'
 ```
 
 Then I edited `.\etc\conda\deactivate.d\env_vars.bat` as follows:
 
 ```{bash, eval=FALSE}
+#!/bin/sh
 set db_connect=
 ```
 
