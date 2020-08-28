@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Python on Juliana&#39;s Water Data Nerd Blog</title>
-    <link>/categories/python/</link>
-    <description>Recent content in Python on Juliana&#39;s Water Data Nerd Blog</description>
+    <title>Oracle on Juliana&#39;s Water Data Nerd Blog</title>
+    <link>/tags/oracle/</link>
+    <description>Recent content in Oracle on Juliana&#39;s Water Data Nerd Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>juliana.spector@water.ca.gov (Juliana Spector)</managingEditor>
     <webMaster>juliana.spector@water.ca.gov (Juliana Spector)</webMaster>
     <lastBuildDate>Thu, 27 Aug 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/categories/python/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/oracle/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -19,15 +19,6 @@
       <author>juliana.spector@water.ca.gov (Juliana Spector)</author>
       <guid>/post/connecting-oracle-ubuntu/</guid>
       <description>Migrating to LinuxI’ve recently had a lot of issues with software compatibility in Windows OS and decided to take the plunge into setting up Linux with Ubuntu to do bulk of my data science work processes. Because most data I use day-to-day is stored in an Oracle database, it was necessary to figure out how to connect to database within a Linux environment. I set up a Linux virtual machine with 64-bit Ubuntu in Oracle VM Virtual Box Manager to get started.</description>
-    </item>
-    
-    <item>
-      <title>Configuring and listening to webhook using Box Developer and Google Sheets</title>
-      <link>/post/2020-08-14-webhook/</link>
-      <pubDate>Fri, 14 Aug 2020 00:00:00 +0000</pubDate>
-      <author>juliana.spector@water.ca.gov (Juliana Spector)</author>
-      <guid>/post/2020-08-14-webhook/</guid>
-      <description>What is a webhook?Webhooks are user-defined HTTP callbacks that are triggered by some event, such as pushing code to a repository or a comment being posted to a blog. When that event occurs, the source site makes an HTTP request to the URL configured for the webhook. In my case, I wanted to enable a callback when a file was uploaded to a Box folder owned by my organization.</description>
     </item>
     
   </channel>

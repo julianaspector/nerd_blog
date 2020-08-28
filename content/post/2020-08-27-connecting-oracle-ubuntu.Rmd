@@ -1,0 +1,105 @@
+---
+title: Connecting to Oracle database in Ubuntu with cx_Oracle
+author: Juliana Spector
+date: '2020-08-27'
+slug: connecting-oracle-ubuntu
+categories:
+  - Python
+tags:
+  - Ubuntu
+  - Linux
+  - Oracle
+  - cx_Oracle
+type: ''
+subtitle: ''
+image: ''
+---
+
+# Migrating to Linux
+I've recently had a lot of issues with software compatibility in Windows OS and decided to take the plunge into setting up Linux with Ubuntu to do bulk of my data science work processes. Because most data I use day-to-day is stored in an Oracle database, it was necessary to figure out how to connect to database within a Linux environment. I set up a Linux virtual machine with 64-bit Ubuntu in [Oracle VM Virtual Box Manager](https://www.virtualbox.org/) to get started. This blog post from [Nakivo](https://www.nakivo.com/blog/install-ubuntu-on-virtualbox-virtual-machine/) was a helpful guide for configuring the virtual machine.
+
+# Install Anaconda and necessary libraries in conda environment
+I followed [Anaconda's guide for installing on Linux](https://docs.anaconda.com/anaconda/install/linux/) and set up a conda environment with libraries: spyder, spyder-kernels, and cx_Oracle. If you are not familiar with setting up conda environments with specific libraries, this [guide](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html) from Anaconda is very useful.
+
+# Install Oracle Instant Client
+Go to [Instant Client Downloads](https://www.oracle.com/database/technologies/instant-client/linux-x86-64-downloads.html). I installed the Basic Package (RPM) for Version 19.8.0.0.0. Also installed the alien package (so could install rpm packages) by typing the following command in terminal:
+
+```{bash, eval=FALSE}
+sudo apt-get install alien
+````
+
+Once the install was complete, I navigated to the folder where rpm file was downloaded and executed the following (where * denotes the installation and version type-just copy the rpm file name):
+
+```{bash, eval=FALSE}
+sudo alien -i oracle-instantclient-basic*.rpm
+```
+
+Next I needed to install libaio.so. Use the following command to do so:
+
+```{bash, eval=FALSE}
+sudo apt-get install libaio1
+```
+
+Then I created Oracle configuration file
+
+```{bash, eval=FALSE}
+sudo sensible-editor /etc/ld.so.conf.d/oracle.conf
+```
+
+and added this line to `oracle.conf`:
+
+```{bash, eval=FALSE}
+/usr/lib/oracle/<your version>/client64/lib
+```
+
+Then update the configuration by running following command:
+
+```{bash, eval=FALSE}
+sudo ldconfig
+```
+
+# Securing your login credentials
+In order to not include my user name and password in script (for security purposes), I stored the credentials in the conda environment. The credentials in an environment variable will be activated when environment is active and deactivated when environment is inactive.
+
+First, I located the directory for conda environment (last activated) in my terminal window by running: 
+
+```{bash, eval=FALSE}
+echo $CONDA_PREFIX
+```
+
+Then, I entered that directory and created these sub directories and files:
+
+```{bash, eval=FALSE}
+cd $CONDA_PREFIX
+mkdir -p ./etc/conda/activate.d
+mkdir -p ./etc/conda/deactivate.d
+touch ./etc/conda/activate.d/env_vars.sh
+touch ./etc/conda/deactivate.d/env_vars.sh
+```
+
+I edited `.\etc\conda\activate.d\env_vars.bat` as follows with user name and password:
+
+```{bash, eval=FALSE}
+export db_connect='user/pw@db'
+```
+
+Then I edited `.\etc\conda\deactivate.d\env_vars.bat` as follows:
+
+```{bash, eval=FALSE}
+set db_connect=
+```
+
+# Connect to Oracle database with cx_Oracle library
+Now the cx_Oracle library can be used to connect to database. Activate conda environment and open Spyder from the terminal. This is the code I used in a Spyder code editor:
+
+```{python, eval=FALSE}
+import cx_Oracle
+import os
+
+# Get credentials from environmental variable in conda environment
+connectString = os.getenv('db_connect')
+
+#Connect to database
+dsn_tns = cx_Oracle.makedsn("host_name", port, "service_name")
+SQLcxn = cx_Oracle.connect(connectString, dsn=dsn_tns)
+```

@@ -1,0 +1,71 @@
+---
+title: Connecting to Oracle database in Ubuntu with cx_Oracle
+author: Juliana Spector
+date: '2020-08-27'
+slug: connecting-oracle-ubuntu
+categories:
+  - Python
+tags:
+  - Ubuntu
+  - Linux
+  - Oracle
+  - cx_Oracle
+type: ''
+subtitle: ''
+image: ''
+---
+
+
+
+<div id="migrating-to-linux" class="section level1">
+<h1>Migrating to Linux</h1>
+<p>I’ve recently had a lot of issues with software compatibility in Windows OS and decided to take the plunge into setting up Linux with Ubuntu to do bulk of my data science work processes. Because most data I use day-to-day is stored in an Oracle database, it was necessary to figure out how to connect to database within a Linux environment. I set up a Linux virtual machine with 64-bit Ubuntu in <a href="https://www.virtualbox.org/">Oracle VM Virtual Box Manager</a> to get started. This blog post from <a href="https://www.nakivo.com/blog/install-ubuntu-on-virtualbox-virtual-machine/">Nakivo</a> was a helpful guide for configuring the virtual machine.</p>
+</div>
+<div id="install-anaconda-and-necessary-libraries-in-conda-environment" class="section level1">
+<h1>Install Anaconda and necessary libraries in conda environment</h1>
+<p>I followed <a href="https://docs.anaconda.com/anaconda/install/linux/">Anaconda’s guide for installing on Linux</a> and set up a conda environment with libraries: spyder, spyder-kernels, and cx_Oracle. If you are not familiar with setting up conda environments with specific libraries, this <a href="https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html">guide</a> from Anaconda is very useful.</p>
+</div>
+<div id="install-oracle-instant-client" class="section level1">
+<h1>Install Oracle Instant Client</h1>
+<p>Go to <a href="https://www.oracle.com/database/technologies/instant-client/linux-x86-64-downloads.html">Instant Client Downloads</a>. I installed the Basic Package (RPM) for Version 19.8.0.0.0. Also installed the alien package (so could install rpm packages) by typing the following command in terminal:</p>
+<pre class="bash"><code>sudo apt-get install alien</code></pre>
+<p>Once the install was complete, I navigated to the folder where rpm file was downloaded and executed the following (where * denotes the installation and version type-just copy the rpm file name):</p>
+<pre class="bash"><code>sudo alien -i oracle-instantclient-basic*.rpm</code></pre>
+<p>Next I needed to install libaio.so. Use the following command to do so:</p>
+<pre class="bash"><code>sudo apt-get install libaio1</code></pre>
+<p>Then I created Oracle configuration file</p>
+<pre class="bash"><code>sudo sensible-editor /etc/ld.so.conf.d/oracle.conf</code></pre>
+<p>and added this line to <code>oracle.conf</code>:</p>
+<pre class="bash"><code>/usr/lib/oracle/&lt;your version&gt;/client64/lib</code></pre>
+<p>Then update the configuration by running following command:</p>
+<pre class="bash"><code>sudo ldconfig</code></pre>
+</div>
+<div id="securing-your-login-credentials" class="section level1">
+<h1>Securing your login credentials</h1>
+<p>In order to not include my user name and password in script (for security purposes), I stored the credentials in the conda environment. The credentials in an environment variable will be activated when environment is active and deactivated when environment is inactive.</p>
+<p>First, I located the directory for conda environment (last activated) in my terminal window by running:</p>
+<pre class="bash"><code>echo $CONDA_PREFIX</code></pre>
+<p>Then, I entered that directory and created these sub directories and files:</p>
+<pre class="bash"><code>cd $CONDA_PREFIX
+mkdir -p ./etc/conda/activate.d
+mkdir -p ./etc/conda/deactivate.d
+touch ./etc/conda/activate.d/env_vars.sh
+touch ./etc/conda/deactivate.d/env_vars.sh</code></pre>
+<p>I edited <code>.\etc\conda\activate.d\env_vars.bat</code> as follows with user name and password:</p>
+<pre class="bash"><code>export db_connect=&#39;user/pw@db&#39;</code></pre>
+<p>Then I edited <code>.\etc\conda\deactivate.d\env_vars.bat</code> as follows:</p>
+<pre class="bash"><code>set db_connect=</code></pre>
+</div>
+<div id="connect-to-oracle-database-with-cx_oracle-library" class="section level1">
+<h1>Connect to Oracle database with cx_Oracle library</h1>
+<p>Now the cx_Oracle library can be used to connect to database. Activate conda environment and open Spyder from the terminal. This is the code I used in a Spyder code editor:</p>
+<pre class="python"><code>import cx_Oracle
+import os
+
+# Get credentials from environmental variable in conda environment
+connectString = os.getenv(&#39;db_connect&#39;)
+
+#Connect to database
+dsn_tns = cx_Oracle.makedsn(&quot;host_name&quot;, port, &quot;service_name&quot;)
+SQLcxn = cx_Oracle.connect(connectString, dsn=dsn_tns)</code></pre>
+</div>

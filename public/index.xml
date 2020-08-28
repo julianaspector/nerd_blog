@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>juliana.spector@water.ca.gov (Juliana Spector)</managingEditor>
     <webMaster>juliana.spector@water.ca.gov (Juliana Spector)</webMaster>
-    <lastBuildDate>Tue, 18 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 27 Aug 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Connecting to Oracle database in Ubuntu with cx_Oracle</title>
+      <link>/post/connecting-oracle-ubuntu/</link>
+      <pubDate>Thu, 27 Aug 2020 00:00:00 +0000</pubDate>
+      <author>juliana.spector@water.ca.gov (Juliana Spector)</author>
+      <guid>/post/connecting-oracle-ubuntu/</guid>
+      <description>Migrating to LinuxI’ve recently had a lot of issues with software compatibility in Windows OS and decided to take the plunge into setting up Linux with Ubuntu to do bulk of my data science work processes. Because most data I use day-to-day is stored in an Oracle database, it was necessary to figure out how to connect to database within a Linux environment. I set up a Linux virtual machine with 64-bit Ubuntu in Oracle VM Virtual Box Manager to get started.</description>
+    </item>
     
     <item>
       <title>Web scraping from web pages in batch</title>

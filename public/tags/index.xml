@@ -7,10 +7,46 @@
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>juliana.spector@water.ca.gov (Juliana Spector)</managingEditor>
     <webMaster>juliana.spector@water.ca.gov (Juliana Spector)</webMaster>
-    <lastBuildDate>Tue, 18 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 27 Aug 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>cx_Oracle</title>
+      <link>/tags/cx_oracle/</link>
+      <pubDate>Thu, 27 Aug 2020 00:00:00 +0000</pubDate>
+      <author>juliana.spector@water.ca.gov (Juliana Spector)</author>
+      <guid>/tags/cx_oracle/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>/tags/linux/</link>
+      <pubDate>Thu, 27 Aug 2020 00:00:00 +0000</pubDate>
+      <author>juliana.spector@water.ca.gov (Juliana Spector)</author>
+      <guid>/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Oracle</title>
+      <link>/tags/oracle/</link>
+      <pubDate>Thu, 27 Aug 2020 00:00:00 +0000</pubDate>
+      <author>juliana.spector@water.ca.gov (Juliana Spector)</author>
+      <guid>/tags/oracle/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ubuntu</title>
+      <link>/tags/ubuntu/</link>
+      <pubDate>Thu, 27 Aug 2020 00:00:00 +0000</pubDate>
+      <author>juliana.spector@water.ca.gov (Juliana Spector)</author>
+      <guid>/tags/ubuntu/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>rvest</title>

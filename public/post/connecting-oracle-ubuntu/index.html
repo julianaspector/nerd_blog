@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Connecting to Oracle database in Ubuntu with cx_Oracle - Juliana&#39;s Water Data Nerd Blog</title>
+  <meta name="description" content="Migrating to LinuxI’ve recently had a lot of issues with software compatibility in Windows OS and decided to take the plunge into setting up Linux with Ubuntu to do bulk of my data science work processes. Because most data I use day-to-day is stored in an Oracle database, it was necessary to figure out how to connect to database within a Linux environment. I set up a Linux virtual machine with 64-bit Ubuntu in Oracle VM Virtual Box Manager to get started.">
+  <meta name="author" content="Juliana Spector"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "Juliana\u0027s Water Data Nerd Blog",
+    
+    "url": "\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "\/post\/connecting-oracle-ubuntu\/",
+          "name": "Connecting to oracle database in ubuntu with cx oracle"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "Juliana Spector"
+  },
+  "headline": "Connecting to Oracle database in Ubuntu with cx_Oracle",
+  "description" : "Migrating to Linux\rI’ve recently had a lot of issues with software compatibility in Windows OS and decided to take the plunge into setting up Linux with Ubuntu to do bulk of my data science work processes. Because most data I use day-to-day is stored in an Oracle database, it was necessary to figure out how to connect to database within a Linux environment. I set up a Linux virtual machine with 64-bit Ubuntu in Oracle VM Virtual Box Manager to get started.",
+  "inLanguage" : "en",
+  "wordCount":  438 ,
+  "datePublished" : "2020-08-27T00:00:00",
+  "dateModified" : "2020-08-27T00:00:00",
+  "image" : "\/img\/cat.jpg",
+  "keywords" : [ "Ubuntu, Linux, Oracle, cx_Oracle" ],
+  "mainEntityOfPage" : "\/post\/connecting-oracle-ubuntu\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "\/img\/cat.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="Connecting to Oracle database in Ubuntu with cx_Oracle" />
+<meta property="og:description" content="Migrating to LinuxI’ve recently had a lot of issues with software compatibility in Windows OS and decided to take the plunge into setting up Linux with Ubuntu to do bulk of my data science work processes. Because most data I use day-to-day is stored in an Oracle database, it was necessary to figure out how to connect to database within a Linux environment. I set up a Linux virtual machine with 64-bit Ubuntu in Oracle VM Virtual Box Manager to get started.">
+<meta property="og:image" content="/img/cat.jpg" />
+<meta property="og:url" content="/post/connecting-oracle-ubuntu/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Juliana&#39;s Water Data Nerd Blog" />
+
+  <meta name="twitter:title" content="Connecting to Oracle database in Ubuntu with cx_Oracle" />
+  <meta name="twitter:description" content="Migrating to LinuxI’ve recently had a lot of issues with software compatibility in Windows OS and decided to take the plunge into setting up Linux with Ubuntu to do bulk of my data science work …">
+  <meta name="twitter:image" content="/img/cat.jpg" />
+  <meta name="twitter:card" content="summary" />
+  <link href='/img/cat_favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta name="generator" content="Hugo 0.74.3" />
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Juliana&#39;s Water Data Nerd Blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="/css/highlight.min.css" /><link rel="stylesheet" href="/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Juliana&#39;s Water Data Nerd Blog</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="Juliana&#39;s Water Data Nerd Blog" href="/">
+            <img class="avatar-img" src="/img/cat.jpg" alt="Juliana&#39;s Water Data Nerd Blog" />
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              
+                <h1>Connecting to Oracle database in Ubuntu with cx_Oracle</h1>
+              
+              
+              
+              
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on August 27, 2020
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;3&nbsp;minutes
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;438&nbsp;words
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;Juliana Spector
+    
+  
+  
+</span>
+
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        
+
+
+<div id="migrating-to-linux" class="section level1">
+<h1>Migrating to Linux</h1>
+<p>I’ve recently had a lot of issues with software compatibility in Windows OS and decided to take the plunge into setting up Linux with Ubuntu to do bulk of my data science work processes. Because most data I use day-to-day is stored in an Oracle database, it was necessary to figure out how to connect to database within a Linux environment. I set up a Linux virtual machine with 64-bit Ubuntu in <a href="https://www.virtualbox.org/">Oracle VM Virtual Box Manager</a> to get started. This blog post from <a href="https://www.nakivo.com/blog/install-ubuntu-on-virtualbox-virtual-machine/">Nakivo</a> was a helpful guide for configuring the virtual machine.</p>
+</div>
+<div id="install-anaconda-and-necessary-libraries-in-conda-environment" class="section level1">
+<h1>Install Anaconda and necessary libraries in conda environment</h1>
+<p>I followed <a href="https://docs.anaconda.com/anaconda/install/linux/">Anaconda’s guide for installing on Linux</a> and set up a conda environment with libraries: spyder, spyder-kernels, and cx_Oracle. If you are not familiar with setting up conda environments with specific libraries, this <a href="https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html">guide</a> from Anaconda is very useful.</p>
+</div>
+<div id="install-oracle-instant-client" class="section level1">
+<h1>Install Oracle Instant Client</h1>
+<p>Go to <a href="https://www.oracle.com/database/technologies/instant-client/linux-x86-64-downloads.html">Instant Client Downloads</a>. I installed the Basic Package (RPM) for Version 19.8.0.0.0. Also installed the alien package (so could install rpm packages) by typing the following command in terminal:</p>
+<pre class="bash"><code>sudo apt-get install alien</code></pre>
+<p>Once the install was complete, I navigated to the folder where rpm file was downloaded and executed the following (where * denotes the installation and version type-just copy the rpm file name):</p>
+<pre class="bash"><code>sudo alien -i oracle-instantclient-basic*.rpm</code></pre>
+<p>Next I needed to install libaio.so. Use the following command to do so:</p>
+<pre class="bash"><code>sudo apt-get install libaio1</code></pre>
+<p>Then I created Oracle configuration file</p>
+<pre class="bash"><code>sudo sensible-editor /etc/ld.so.conf.d/oracle.conf</code></pre>
+<p>and added this line to <code>oracle.conf</code>:</p>
+<pre class="bash"><code>/usr/lib/oracle/&lt;your version&gt;/client64/lib</code></pre>
+<p>Then update the configuration by running following command:</p>
+<pre class="bash"><code>sudo ldconfig</code></pre>
+</div>
+<div id="securing-your-login-credentials" class="section level1">
+<h1>Securing your login credentials</h1>
+<p>In order to not include my user name and password in script (for security purposes), I stored the credentials in the conda environment. The credentials in an environment variable will be activated when environment is active and deactivated when environment is inactive.</p>
+<p>First, I located the directory for conda environment (last activated) in my terminal window by running:</p>
+<pre class="bash"><code>echo $CONDA_PREFIX</code></pre>
+<p>Then, I entered that directory and created these sub directories and files:</p>
+<pre class="bash"><code>cd $CONDA_PREFIX
+mkdir -p ./etc/conda/activate.d
+mkdir -p ./etc/conda/deactivate.d
+touch ./etc/conda/activate.d/env_vars.sh
+touch ./etc/conda/deactivate.d/env_vars.sh</code></pre>
+<p>I edited <code>.\etc\conda\activate.d\env_vars.bat</code> as follows with user name and password:</p>
+<pre class="bash"><code>export db_connect=&#39;user/pw@db&#39;</code></pre>
+<p>Then I edited <code>.\etc\conda\deactivate.d\env_vars.bat</code> as follows:</p>
+<pre class="bash"><code>set db_connect=</code></pre>
+</div>
+<div id="connect-to-oracle-database-with-cx_oracle-library" class="section level1">
+<h1>Connect to Oracle database with cx_Oracle library</h1>
+<p>Now the cx_Oracle library can be used to connect to database. Activate conda environment and open Spyder from the terminal. This is the code I used in a Spyder code editor:</p>
+<pre class="python"><code>import cx_Oracle
+import os
+
+# Get credentials from environmental variable in conda environment
+connectString = os.getenv(&#39;db_connect&#39;)
+
+#Connect to database
+dsn_tns = cx_Oracle.makedsn(&quot;host_name&quot;, port, &quot;service_name&quot;)
+SQLcxn = cx_Oracle.connect(connectString, dsn=dsn_tns)</code></pre>
+</div>
+
+
+        
+          <div class="blog-tags">
+            
+              <a href="//tags/ubuntu/">Ubuntu</a>&nbsp;
+            
+              <a href="//tags/linux/">Linux</a>&nbsp;
+            
+              <a href="//tags/oracle/">Oracle</a>&nbsp;
+            
+              <a href="//tags/cx_oracle/">cx_Oracle</a>&nbsp;
+            
+          </div>
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <div class="list-inline footer-links">
+                
+
+<div class="share-box" aria-hidden="true">
+    <ul class="share">
+      
+      <li>
+        <a href="//twitter.com/share?url=%2fpost%2fconnecting-oracle-ubuntu%2f&amp;text=Connecting%20to%20Oracle%20database%20in%20Ubuntu%20with%20cx_Oracle&amp;via=" target="_blank" title="Share on Twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.facebook.com/sharer/sharer.php?u=%2fpost%2fconnecting-oracle-ubuntu%2f" target="_blank" title="Share on Facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//reddit.com/submit?url=%2fpost%2fconnecting-oracle-ubuntu%2f&amp;title=Connecting%20to%20Oracle%20database%20in%20Ubuntu%20with%20cx_Oracle" target="_blank" title="Share on Reddit">
+          <i class="fab fa-reddit"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.linkedin.com/shareArticle?url=%2fpost%2fconnecting-oracle-ubuntu%2f&amp;title=Connecting%20to%20Oracle%20database%20in%20Ubuntu%20with%20cx_Oracle" target="_blank" title="Share on LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.stumbleupon.com/submit?url=%2fpost%2fconnecting-oracle-ubuntu%2f&amp;title=Connecting%20to%20Oracle%20database%20in%20Ubuntu%20with%20cx_Oracle" target="_blank" title="Share on StumbleUpon">
+          <i class="fab fa-stumbleupon"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.pinterest.com/pin/create/button/?url=%2fpost%2fconnecting-oracle-ubuntu%2f&amp;description=Connecting%20to%20Oracle%20database%20in%20Ubuntu%20with%20cx_Oracle" target="_blank" title="Share on Pinterest">
+          <i class="fab fa-pinterest"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+  
+
+              </div>
+            </section>
+        
+
+        
+          
+
+          
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="/post/web-scraping-from-webpages-in-batch/" data-toggle="tooltip" data-placement="top" title="Web scraping from web pages in batch">&larr; Previous Post</a>
+            </li>
+          
+          
+        </ul>
+      
+
+
+      
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+      
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:juliana.spector@water.ca.gov" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/julianaspector" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/juliana-spector-4b329133" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              Juliana Spector
+            
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2020
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="/">Juliana&#39;s Water Data Nerd Blog</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="https://gohugo.io">Hugo v0.74.3</a> powered &nbsp;&bull;&nbsp; Theme <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> adapted from <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="/js/main.js"></script>
+<script src="/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+</html>
+
